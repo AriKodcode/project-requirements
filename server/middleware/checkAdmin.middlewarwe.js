@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { config } from "dotenv";
 
 config(); 
-const SECRET = process.env.SECRETKEY;
+const SECRET = process.env.JWT_KEY;
 
 export const isAdmin = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];

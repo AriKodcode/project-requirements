@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { config } from "dotenv";
 config();
-const SECRET = process.env.SECRETKEY;
+const SECRET = process.env.JWT_KEY;
 config();
 export function createToken(user) {
   return jwt.sign(
