@@ -1,5 +1,5 @@
 import { loginService } from "../Service/auth.service.js";
-import { findAngens } from "../utils/agenst.js";
+import { findAngensByCode } from "../utils/agenst.js";
 import { createToken } from "../utils/token.js";
 
 export const login = async (req, res) => {
@@ -29,9 +29,9 @@ export const login = async (req, res) => {
 export const me = async (req, res) => {
   try {
     const decoded = req.user;
-    const agent = findAngens(decoded.agentCode, decoded.passwordHash);
+    const agent = await findAngensByCode(decoded.agentCode);
     if (!agent) {
-      return res.status(401).json({ error: "agent not found" });
+      return res.status(404).json({ error: "agent not found" });
     }
     res.status(200).json({
       user: {
