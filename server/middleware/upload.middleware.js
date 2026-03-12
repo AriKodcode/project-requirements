@@ -1,9 +1,9 @@
 import multer from "multer";
 import path from "path";
 
-const storage = multer.diskStorage({
+const storageImage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, "data/uploadsImage/");
   },
   filename: (req, file, cb) => {
     const uniqeName = Date.now() + path.extname(file.originalname);
@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const fileFilter = (req, file, cb) => {
+const fileFilterImage = (req, file, cb) => {
   const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
 
   if (allowedTypes.includes(file.mimetype)) {
@@ -21,10 +21,38 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-export const upload = multer({
-  storage,
+export const uploadImage = multer({
+  storage: storageImage,
   limits: {
-    fileSize: 1024 * 1024 * 5
+    fileSize: 1024 * 1024 * 5,
   },
-  fileFilter,
+  fileFilter: fileFilterImage,
+});
+
+const storageCsv = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "data/uploadsCsv/");
+  },
+  filename: (req, file, cb) => {
+    const uniqeName = Date.now() + path.extname(file.originalname);
+    cb(null, uniqeName);
+  },
+});
+
+const fileFilterCsv = (req, file, cb) => {
+  const allowedTypes = ["text/csv", "application/vnd.ms-excel"];
+
+  if (allowedTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error("only csv are allowed"));
+  }
+};
+
+export const uploadCsv = multer({
+  storage: storageCsv,
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
+  fileFilter: fileFilterCsv,
 });
