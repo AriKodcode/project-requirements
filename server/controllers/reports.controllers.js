@@ -9,7 +9,11 @@ import getCsv from "../dal/getCsv.js";
 import getAllReports from "../dal/getReports.dal.js";
 export const creatReport = async (req, res) => {
   try {
-    const { category, urgency, message } = req.body;
+    const data = JSON.parse(req.body.report);
+    console.log(data);
+
+    const { category, urgency, message } = data;
+    console.log(category, urgency, message);
     createReportService(category, urgency, message);
     const imgPath = req.file ? req.file.path : null;
     const report = {
@@ -68,7 +72,7 @@ export const getReports = async (req, res) => {
     } else {
       const { agentCode, category, urgency } = req.query;
       if (agentCode) {
-        reports = reports.filter((report) => report.agentCode === agentCode);
+        reports = reports.filter((report) => report.userId === agentCode);
       }
       if (category) {
         reports = reports.filter((report) => report.category === category);

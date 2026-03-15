@@ -14,7 +14,9 @@ export const createUserService = (agentCode, fullName, role, password) => {
     error.status = 400;
     throw error;
   }
-  if (role !== "agent" || role !== "admin") {
+  if (role !== "agent" && role !== "admin") {
+    console.log(role);
+
     const error = new Error("role must be admin or agent");
     error.status = 400;
     throw error;

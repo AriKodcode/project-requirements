@@ -6,6 +6,8 @@ import getAgents from "../dal/getAgents.del.js";
 export const newUser = (req, res) => {
   try {
     const { agentCode, fullName, role, password } = req.body;
+    console.log(role);
+
     createUserService(agentCode, fullName, role, password);
     let agentPassword;
     if (password) {
@@ -31,7 +33,7 @@ export const newUser = (req, res) => {
 export const getUsers = async (req, res) => {
   try {
     const users = await getAgents();
-    res.status(200).json({ users: users });
+    res.status(200).json({ users });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
