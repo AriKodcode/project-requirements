@@ -21,7 +21,7 @@ export default function Login(): JSX.Element {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
-  async function hendleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function hendleSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
       const user: SendUser = {

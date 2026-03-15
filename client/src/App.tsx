@@ -11,6 +11,8 @@ import GetReportsById from "./components/GetReportsById";
 import AdminUsersPage from "./pages/AdminUsersPage";
 import NewUser from "./components/NewUser";
 import GetUsers from "./components/GetUsers";
+import ProtectedRouteAdmin from "./components/ProtectedRouteAdmin";
+import ProtectedRouteAgent from "./components/ProtectedRouteAgent";
 
 export default function App() {
   return (
@@ -25,30 +27,34 @@ export default function App() {
       </div>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="admin/dashboard" element={<AdminDashboard />} />
-        <Route path="admin/dashboard/newreport" element={<NewReportPage />} />
-        <Route
-          path="admin/dashboard/newreport/csv"
-          element={<CsvUploadPage />}
-        />
-        <Route path="admin/dashboard/reports" element={<MyReportsPage />}>
-          <Route index element={<GetReports />} />
-          <Route path="id" element={<GetReportsById />} />
+        <Route element={<ProtectedRouteAdmin />}>
+          <Route path="admin/dashboard" element={<AdminDashboard />} />
+          <Route path="admin/dashboard/newreport" element={<NewReportPage />} />
+          <Route
+            path="admin/dashboard/newreport/csv"
+            element={<CsvUploadPage />}
+          />
+          <Route path="admin/dashboard/reports" element={<MyReportsPage />}>
+            <Route index element={<GetReports />} />
+            <Route path="id" element={<GetReportsById />} />
+          </Route>
+          <Route path="admin/dashboard/users" element={<AdminUsersPage />}>
+            <Route index element={<GetUsers />} />
+            <Route path="create" element={<NewUser />} />
+          </Route>
         </Route>
-        <Route path="admin/dashboard/users" element={<AdminUsersPage />}>
-          <Route index element={<GetUsers />} />
-          <Route path="create" element={<NewUser />} />
+        <Route element={<ProtectedRouteAgent />}>
+          <Route path="agent/dashboard" element={<AgentDashboard />} />
+          <Route path="agent/dashboard/newreport" element={<NewReportPage />} />
+          <Route
+            path="agent/dashboard/newreport/csv"
+            element={<CsvUploadPage />}
+          />
+          <Route path="agent/dashboard/reports" element={<MyReportsPage />}>
+            <Route index element={<GetReports />} />
+            <Route path="id" element={<GetReportsById />} />
+          </Route>
         </Route>
-        <Route path="agent/dashboard" element={<AgentDashboard />} />
-        <Route path="agent/dashboard/newreport" element={<NewReportPage />} />
-        <Route
-          path="agent/dashboard/newreport/csv"
-          element={<CsvUploadPage />}
-        />
-        <Route path="agent/dashboard/reports" element={<MyReportsPage />}>
-          <Route index element={<GetReports />} />
-          <Route path="id" element={<GetReportsById />} />
-        </Route>{" "}
       </Routes>
       <div className="footer">
         <p>© Kodcode Unit</p>

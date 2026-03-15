@@ -8,7 +8,7 @@ interface User {
   fullName: string;
   agentPassword: string;
   role: string;
-  createAt: string;
+  createdAt: string;
 }
 export default function GetUsers(): JSX.Element {
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ export default function GetUsers(): JSX.Element {
               <td>{user.fullName}</td>
               <td>{user.agentPassword}</td>
               <td>{user.role}</td>
-              <td>{user.createAt}</td>
+              <td>{user.createdAt}</td>
             </tr>
           ))}
         </tbody>
