@@ -48,7 +48,7 @@ export default function NewReport(): JSX.Element {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setSeccess(res.data);
+      setSeccess("success to created new report ");
     } catch (err) {
       const error = err as AxiosError<{ error: string }>;
       setError(error.response?.data.error || "field send report!");

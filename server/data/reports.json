@@ -88,5 +88,25 @@
     "imgPath": "data/uploadsImage/1773512450683.jpeg",
     "sourceType": "manual",
     "createAt": "2026-03-14T18:20:50.708Z"
+  },
+  {
+    "id": "HGTl8B-q",
+    "userId": "1",
+    "category": "alert",
+    "urgency": "low",
+    "message": "added image",
+    "imgPath": "data/uploadsImage/1773542000614.jpeg",
+    "sourceType": "manual",
+    "createAt": "2026-03-15T02:33:20.632Z"
+  },
+  {
+    "id": "Ih54aGK0",
+    "userId": "1",
+    "category": "logistics",
+    "urgency": "medium",
+    "message": "asdsafddf",
+    "imgPath": null,
+    "sourceType": "manual",
+    "createAt": "2026-03-15T02:34:40.479Z"
   }
 ]
